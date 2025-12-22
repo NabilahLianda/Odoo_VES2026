@@ -10,5 +10,4 @@ CMD odoo \
   --db_port=5432 \
   --db_user=$PGUSER \
   --db_password=$PGPASSWORD \
-  --db_name=$PGDATABASE \
   -c /etc/odoo/odoo.conf
