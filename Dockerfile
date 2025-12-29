@@ -12,4 +12,5 @@ CMD bash -c "until nc -z \"$PGHOST\" 5432; do sleep 2; done && \
     --db_port=5432 \
     --db_user=$PGUSER \
     --db_password=$PGPASSWORD \
+    -i base \
     -c /etc/odoo/odoo.conf"
