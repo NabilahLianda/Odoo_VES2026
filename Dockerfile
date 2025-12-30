@@ -4,14 +4,8 @@ USER root
 RUN apt-get update && apt-get install -y netcat-openbsd
 COPY odoo.conf /etc/odoo/odoo.conf
 
-USER odoo
-CMD bash -c "until nc -z \"$PGHOST\" \"$PGPORT\"; do sleep 2; done && \
-  odoo \
-    --http-interface=0.0.0.0 \
-    --http-port=$PORT \
-    --db_host=$PGHOST \
-    --db_port=$PGPORT \
-    --db_user=$PGUSER \
-    --db_password=$PGPASSWORD \
-    -i base"
+RUN mkdir -p /var/lib/odoo && chown -R odoo:odoo /var/lib/odoo
 
+USER odoo
+
+CMD bash -c "until nc -z \"$PGHOST\" \"$PGPORT\"; do sleep 2; done && odoo"
