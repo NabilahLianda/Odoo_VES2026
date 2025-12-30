@@ -8,4 +8,5 @@ RUN mkdir -p /var/lib/odoo && chown -R odoo:odoo /var/lib/odoo
 
 USER odoo
 
-CMD bash -c "until nc -z \"$PGHOST\" \"$PGPORT\"; do sleep 2; done && odoo"
+EXPOSE 8069
+CMD ["odoo"]
